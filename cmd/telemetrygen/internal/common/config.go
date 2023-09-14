@@ -57,6 +57,7 @@ type Config struct {
 	Headers             KeyValue
 	ResourceAttributes  KeyValue
 	TelemetryAttributes KeyValue
+	Name                string
 }
 
 func (c *Config) GetAttributes() []attribute.KeyValue {
@@ -107,4 +108,5 @@ func (c *Config) CommonFlags(fs *pflag.FlagSet) {
 	fs.Var(&c.TelemetryAttributes, "telemetry-attributes", "Custom telemetry attributes to use. The value is expected in the format \"key=\\\"value\\\"\". "+
 		"Flag may be repeated to set multiple attributes (e.g --signal-attributes \"key1=\\\"value1\\\"\" --otlp-attributes \"key2=\\\"value2\\\"\")")
 
+	fs.StringVar(&c.Name, "name", "gen", "Custom metric name.")
 }
